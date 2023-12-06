@@ -265,24 +265,21 @@ git merge [alias]/[branch]
 
 然后我们在本地更新修改。
 
-$ git fetch origin
+```sh
+# 获取自己仓库
+git fetch origin
+# 获取原始仓库,首先配置原始仓库地址
+git remote add upstream git@github.com:xxx/xxx.git
+git fetch upstream
 remote: Counting objects: 3, done.
 remote: Compressing objects: 100% (2/2), done.
 remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
 Unpacking objects: 100% (3/3), done.
 From github.com:tianqixin/runoob-git-test
    0205aab..febd8ed  master     -> origin/master
-以上信息"0205aab..febd8ed master -> origin/master" 说明 master 分支已被更新，我们可以使用以下命令将更新同步到本地：
-
-$ git merge origin/master
-Updating 0205aab..febd8ed
-Fast-forward
- README.md | 1 +
- 1 file changed, 1 insertion(+)
-查看 README.md 文件内容：
-
-$ cat README.md
-
-# 菜鸟教程 Git 测试
+以上信息"0205aab..febd8ed master -> origin/master" 说明 master 分支已被更新，我们可以使用以下# 命令将更新同步到本地：
+git merge origin/master
+git merge upstream/master
+```
 
 ## 第一次修改内容
