@@ -21,6 +21,7 @@ v21.4.0
 ### fs
 
 使用fs对文件进行读取写入
+
 ```js
 const fs = require('fs');
 
@@ -67,6 +68,7 @@ server.listen(3000, () => {
 ```
 
 根据不同的url响应不同的html内容
+
 1. 获取请求的url地址
 2. 设置默认的响应内容为404
 3. 判断用户的请求是否为/或/index.html
@@ -89,11 +91,12 @@ server.on('request',(req,res) => {
 ```
 
 实现clock时钟的web服务器
+
 1. 导入所需要的模块
 2. 创建基本的web服务器
 3. 将资源的请求url映射为文件的存储地址
 4. 读取文件内容响应给客户端
-5. 优化资源的请求路径 
+5. 优化资源的请求路径
 
 ```js
 //导入http模块
@@ -128,6 +131,7 @@ server.on('request', (req,res) => {
 ## 模块化
 
 nodejs分类
+
 - 内置模块(nodejs官方提供的如fs,path,http)
 - 自定义模块(用户创建的每个.js文件)
 - 第三方模块(由第三方开发出来的模块,使用前要先下载)
@@ -140,7 +144,8 @@ const custom = require(`./public/index.js`)
 //加载第三方模块
 const moment = require('moment')
 ```
-**使用require()方法加载其他模块时,会执行被加载模块中的代码**
+
+使用require()方法加载其他模块时,会执行被加载模块中的代码
 
 ### module对象
 
@@ -160,11 +165,13 @@ module.exports.sayHello = function() {
 const m = require('./lesen.js')
 console.log(m)
 ```
-**module.exports可以简化为exports,共享永远以module.exports为主**
+
+module.exports可以简化为exports,共享永远以module.exports为主
 
 ### 模块化规范
 
 遵循CommonJS规定:
+
 1. 每个模块内容,module变量代表当前模块
 2. module变量是一个对象,他的exports属性是对外的接口
 3. 加载某个模块,其实是加载该模块的module.exports属性
@@ -172,12 +179,14 @@ console.log(m)
 ## npm
 
 npm安装包后,多一个node_modules的文件夹和package-lock.json的配置文件
+
 - node_modules存放已安装到项目中的包.require()导入时,从这个目录中查找并加载
 - package-lock.json 配置文件用来记录node_modules 目录下的每个包的下载信息
 
 ## express
 
 本质是npm上的一个第三方包,提供了快速创建web服务器的便捷方法,express相当于http的封装包
+
 - 安装
 - 你好世界
 - Express 生成器
@@ -218,20 +227,25 @@ app.listen(port, () => {
 ### 3.express的基本使用
 
 - app.get('请求路径', function(req, res){})
+
 ```js
 //应用程序以 "Hello World!" 响应对根 URL (/) 或路由的请求
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 ```
+
 - 通过`req.query`对象,可以访问到客户端通过查询字符串的形式,发送到服务器的参数
+
 ```js
 app.get('/', (req, res) => {
     //默认对象为空{};客户端使用?name=lesen&age=18 发送到服务器参数
   console.log(req.query)
 })
 ```
+
 - 通过`req.paramas`对象,可以访问到URL中,通过:匹配到的动态参数
+
 ```js
 app.get('/:name/:id', (req, res) => {
   console.log(req.params)
@@ -246,16 +260,17 @@ app.get('/:name/:id', (req, res) => {
 1. express.static()
     >可以创建一个静态资源服务器,将public目录下的picture,css,JavaScript文件对外开放
 
-```js
-app.use(express.static('public'))
-//现在可以访问public目录中的所有文件了:
-http://localhost:3000/images/index.jpg
-http://localhost:3000/css/index.jpg
-http://localhost:3000/js/index.jpg
-```
+    ```js
+    app.use(express.static('public'))
+    //现在可以访问public目录中的所有文件了:
+    http://localhost:3000/images/index.jpg
+    http://localhost:3000/css/index.jpg
+    http://localhost:3000/js/index.jpg
+    ```
 
 2. 托管多个静态资源目录,多次调用express.static()
 3. 挂载路径前缀
+
    ```js
    app.use('/user', express.static('./public'))
    ```
@@ -267,6 +282,7 @@ http://localhost:3000/js/index.jpg
 在express中,路由就是客户端的请求与服务器处理函数之间的映射关系
 
 express中的路由分3部分组成
+
 1. 请求的类型
 2. 请求的url地址
 3. 处理函数
@@ -278,6 +294,7 @@ app.METHOD(PATH,HANDLER)
 #### 5.2路由的使用
 
 为了方便对路由进行模块化管理,express不建议将路由直接挂载到app上,推荐将路由抽离为单独的模块
+
 1. 创建路由模块对应的.js文件
 2. 调用`express.Router()`函数创建路由对象
 3. 向路由对象上挂载具体的路由
@@ -308,6 +325,7 @@ app.use(router)
 ### express中间件
 
 中间件函数的形参中必须包含next参数
+
 ```js
 app.get('/', function(req,res,next) {
     next();

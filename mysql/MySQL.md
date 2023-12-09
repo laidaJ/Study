@@ -38,17 +38,18 @@
 `SHOW CREATE TABLE 表名;`
 
 创建表：
+
 ```sql
 CREATE TABLE 表名(
-	字段1 字段1类型 [COMMENT 字段1注释],
-	字段2 字段2类型 [COMMENT 字段2注释],
-	字段3 字段3类型 [COMMENT 字段3注释],
-	...
-	字段n 字段n类型 [COMMENT 字段n注释]
+ 字段1 字段1类型 [COMMENT 字段1注释],
+ 字段2 字段2类型 [COMMENT 字段2注释],
+ 字段3 字段3类型 [COMMENT 字段3注释],
+ ...
+ 字段n 字段n类型 [COMMENT 字段n注释]
 )[ COMMENT 表注释 ];
 ```
-**最后一个字段后面没有逗号**
 
+**最后一个字段后面没有逗号**  
 添加字段：
 `ALTER TABLE 表名 ADD 字段名 类型(长度) [COMMENT 注释] [约束];`
 例：`ALTER TABLE emp ADD nickname varchar(20) COMMENT '昵称';`
@@ -83,8 +84,7 @@ CREATE TABLE 表名(
 批量添加数据：
 `INSERT INTO 表名 (字段名1, 字段名2, ...) VALUES (值1, 值2, ...), (值1, 值2, ...), (值1, 值2, ...);`
 `INSERT INTO 表名 VALUES (值1, 值2, ...), (值1, 值2, ...), (值1, 值2, ...);`
-
-##### 注意事项
+**注意事项**
 
 - 字符串和日期类型数据应该包含在引号中
 - 插入的数据大小应该在字段的规定范围内
@@ -102,21 +102,22 @@ CREATE TABLE 表名(
 ### DQL（数据查询语言）
 
 语法：
+
 ```sql
 SELECT
-	字段列表
+ 字段列表
 FROM
-	表名字段
+ 表名字段
 WHERE
-	条件列表
+ 条件列表
 GROUP BY
-	分组字段列表
+ 分组字段列表
 HAVING
-	分组后的条件列表
+ 分组后的条件列表
 ORDER BY
-	排序字段列表
+ 排序字段列表
 LIMIT
-	分页参数
+ 分页参数
 ```
 
 #### 基础查询
@@ -163,6 +164,7 @@ LIMIT
 | NOT 或 !           | 非，不是                     |
 
 例子：
+
 ```sql
 -- 年龄等于30
 select * from employee where age = 30;
@@ -447,12 +449,12 @@ SELECT DATE_ADD(NOW(), INTERVAL 70 YEAR);
 
 ```sql
 select
-	name,
-	(case when age > 30 then '中年' else '青年' end)
+ name,
+ (case when age > 30 then '中年' else '青年' end)
 from employee;
 select
-	name,
-	(case workaddress when '北京市' then '一线城市' when '上海市' then '一线城市' else '二线城市' end) as '工作地址'
+ name,
+ (case workaddress when '北京市' then '一线城市' when '上海市' then '一线城市' else '二线城市' end) as '工作地址'
 from employee;
 ```
 
@@ -486,11 +488,11 @@ from employee;
 
 ```sql
 create table user(
-	id int primary key auto_increment,
-	name varchar(10) not null unique,
-	age int check(age > 0 and age < 120),
-	status char(1) default '1',
-	gender char(1)
+ id int primary key auto_increment,
+ name varchar(10) not null unique,
+ age int check(age > 0 and age < 120),
+ status char(1) default '1',
+ gender char(1)
 );
 ```
 
@@ -500,9 +502,9 @@ create table user(
 
 ```sql
 CREATE TABLE 表名(
-	字段名 字段类型,
-	...
-	[CONSTRAINT] [外键名称] FOREIGN KEY(外键字段名) REFERENCES 主表(主表列名)
+ 字段名 字段类型,
+ ...
+ [CONSTRAINT] [外键名称] FOREIGN KEY(外键字段名) REFERENCES 主表(主表列名)
 );
 ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段名) REFERENCES 主表(主表列名);
 
@@ -798,7 +800,7 @@ commit;
 | 不可重复读 | 一个事务先后读取同一条记录，但两次读取的数据不同                                       |
 | 幻读       | 一个事务按照条件查询数据时，没有对应的数据行，但是再插入数据时，又发现这行数据已经存在 |
 
-> 这三个问题的详细演示：https://www.bilibili.com/video/BV1Kr4y1i7ru?p=55cd 
+> 这三个问题的详细演示：<https://www.bilibili.com/video/BV1Kr4y1i7ru?p=55cd>
 
 并发事务隔离级别：
 
@@ -837,7 +839,7 @@ MySQL体系结构：
 show create table account;
 -- 建表时指定存储引擎
 CREATE TABLE 表名(
-	...
+ ...
 ) ENGINE=INNODB;
 -- 查看当前数据库支持的存储引擎
 show engines;
@@ -937,10 +939,14 @@ Memory 引擎的表数据是存储在内存中的，受硬件问题、断电问�
 
 慢查询日志记录了所有执行时间超过指定参数（long_query_time，单位：秒，默认10秒）的所有SQL语句的日志。
 MySQL的慢查询日志默认没有开启，需要在MySQL的配置文件（/etc/my.cnf）中配置如下信息：
-	# 开启慢查询日志开关
-	slow_query_log=1
-	# 设置慢查询日志的时间为2秒，SQL语句执行时间超过2秒，就会视为慢查询，记录慢查询日志
-	long_query_time=2
+
+# 开启慢查询日志开关
+
+ slow_query_log=1
+
+# 设置慢查询日志的时间为2秒，SQL语句执行时间超过2秒，就会视为慢查询，记录慢查询日志
+
+ long_query_time=2
 更改后记得重启MySQL服务，日志文件位置：/var/lib/mysql/localhost-slow.log
 
 查看慢查询日志开关状态：
@@ -963,8 +969,10 @@ profiling 默认关闭，可以通过set语句在session/global级别开启 prof
 
 EXPLAIN 或者 DESC 命令获取 MySQL 如何执行 SELECT 语句的信息，包括在 SELECT 语句执行过程中表如何连接和连接的顺序。
 语法：
-	# 直接在select语句之前加上关键字 explain / desc
-	EXPLAIN SELECT 字段列表 FROM 表名 HWERE 条件;
+
+# 直接在select语句之前加上关键字 explain / desc
+
+ EXPLAIN SELECT 字段列表 FROM 表名 HWERE 条件;
 
 EXPLAIN 各字段含义：
 
@@ -1022,8 +1030,8 @@ B-Tree (多路平衡查找树) 以一棵最大度数（max-degree，指一个节
 
 ![B-Tree结构](https://learning-logs-1253130399.cos.ap-guangzhou.myqcloud.com/editor/B-Tree结构_20220316163813441163.png "B-Tree结构")
 
-> B-Tree 的数据插入过程动画参照：https://www.bilibili.com/video/BV1Kr4y1i7ru?p=68
-演示地址：https://www.cs.usfca.edu/~galles/visualization/BTree.html
+> B-Tree 的数据插入过程动画参照：<https://www.bilibili.com/video/BV1Kr4y1i7ru?p=68>
+演示地址：<https://www.cs.usfca.edu/~galles/visualization/BTree.html>
 
 #### B+Tree
 
@@ -1031,7 +1039,7 @@ B-Tree (多路平衡查找树) 以一棵最大度数（max-degree，指一个节
 
 ![B+Tree结构图](https://learning-logs-1253130399.cos.ap-guangzhou.myqcloud.com/editor/B+Tree结构图_20220316170700591277.png "B+Tree结构图")
 
-> 演示地址：https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html
+> 演示地址：<https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html>
 
 与 B-Tree 的区别：
 
@@ -1199,6 +1207,7 @@ explain 中 extra 字段含义：
 语法：`create index idx_xxxx on table_name(columnn(n));`
 前缀长度：可以根据索引的选择性来决定，而选择性是指不重复的索引值（基数）和数据表的记录总数的比值，索引选择性越高则查询效率越高，唯一索引的选择性是1，这是最好的索引选择性，性能也是最好的。
 求选择性公式：
+
 ```sql
 select count(distinct email) / count(*) from tb_user;
 select count(distinct substring(email, 1, 5)) / count(*) from tb_user;
@@ -1262,7 +1271,7 @@ load data local infile '/root/sql1.log' into table 'tb_user' fields terminated b
 
 MERGE_THRESHOLD：合并页的阈值，可以自己设置，在创建表或创建索引时指定
 
-> 文字说明不够清晰明了，具体可以看视频里的PPT演示过程：https://www.bilibili.com/video/BV1Kr4y1i7ru?p=90
+> 文字说明不够清晰明了，具体可以看视频里的PPT演示过程：<https://www.bilibili.com/video/BV1Kr4y1i7ru?p=90>
 
 主键设计原则：
 
@@ -1482,12 +1491,12 @@ GRANT 和 REVOKE 允许的动态权限
 
 # 图形化界面工具
 
-- Workbench(免费): http://dev.mysql.com/downloads/workbench/
-- navicat(收费，试用版30天): https://www.navicat.com/en/download/navicat-for-mysql
-- Sequel Pro(开源免费，仅支持Mac OS): http://www.sequelpro.com/
-- HeidiSQL(免费): http://www.heidisql.com/
-- phpMyAdmin(免费): https://www.phpmyadmin.net/
-- SQLyog: https://sqlyog.en.softonic.com/
+- Workbench(免费): <http://dev.mysql.com/downloads/workbench/>
+- navicat(收费，试用版30天): <https://www.navicat.com/en/download/navicat-for-mysql>
+- Sequel Pro(开源免费，仅支持Mac OS): <http://www.sequelpro.com/>
+- HeidiSQL(免费): <http://www.heidisql.com/>
+- phpMyAdmin(免费): <https://www.phpmyadmin.net/>
+- SQLyog: <https://sqlyog.en.softonic.com/>
 
 # 安装
 
@@ -1495,6 +1504,7 @@ GRANT 和 REVOKE 允许的动态权限
 
 1. 在SQL语句之后加上`\G`会将结果的表格形式转换成行文本形式
 2. 查看Mysql数据库占用空间：
+
 ```sql
 SELECT table_schema "Database Name"
      , SUM(data_length + index_length) / (1024 * 1024) "Database Size in MB"

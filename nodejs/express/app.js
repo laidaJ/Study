@@ -1,13 +1,13 @@
-const express = require('express')
-const app = express()
-const router = require('./router')
+const express = require('express');
+const app = express();
+const port = 3000;
 
-app.get('./user/list', function (req, res) {
-    res.send(req.params)
-})
+app.use(express.static('public'));
 
-app.use(router)
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
 
-app.listen('3000', () => {
-    console.log('express is runnig on http://127.0.0.1:3000');
-})
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
