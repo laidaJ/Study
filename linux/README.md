@@ -209,3 +209,11 @@ export PATH=$PATH:/home/uusama/mysql/bin
 - 生效时间：新开终端生效，或者手动source /etc/environment生效
 - 生效期限：永久有效
 - 生效范围：对所有用户有效
+
+### ln
+
+```sh
+ln -s ~/file /usr/local/bin/file
+```
+
+不同文件夹下的软连接需要使用绝对路径,不然会显示红色不可执行
