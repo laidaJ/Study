@@ -235,17 +235,7 @@ getDogPic();
 
 ## express
 
-[postman下载地址](https://www.postman.com/downloads/)可以测试API
-
 本质是npm上的一个第三方包,提供了快速创建web服务器的便捷方法,express相当于http的封装包
-
-- 安装
-- 你好世界
-- Express 生成器
-- 基本路由
-- 静态文件
-- 更多示例
-- 常问问题
 
 ### 1.安装
 
@@ -449,3 +439,85 @@ const moment = require('moment')
 1. 每个模块内容,module变量代表当前模块
 2. module变量是一个对象,他的exports属性是对外的接口
 3. 加载某个模块,其实是加载该模块的module.exports属性
+
+## API
+
+[postman下载地址](https://www.postman.com/downloads/)可以测试API
+
+客户可以与客户端进行的5中交互方式
+
+- `Post`    /tours      创建资料
+- `Get`     /tours/7    读取
+- `Put`     /tours/7    更新
+- `Patch`   /tours/7    更新
+- `Delete`  /tours/7    删除
+
+Application Programming Interface,程序之间的接口
+
+JSON是一种轻量的数据,可以用任何编码语言编码
+
+### Get
+
+```js
+//调取modules
+const express = require('express');
+const app = express();
+const fs = require('fs');
+//读取文件,并且用JSON.parse解构
+const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`))
+app.get('/api/v1/tours', (req, res) => {
+    //给客户发送jason数据
+    res.status(200).json({
+        status: 'success',
+        data: {
+            tours
+        }
+    })
+})
+//listen监听端口启动服务器
+const port = 3000;
+app.listen(port, () => {
+    console.log(`App runing on port ${port}`)
+})
+```
+
+### Post
+
+```js
+//使用中间件
+app.use(express.json());
+//post语法
+app.post('/api/v1/tours', (req, res) => {
+    const newId = tours[tours.length - 1].id + 1;
+    const newTour = Object.assign({ id: newId }, req.body);
+    tours.push(newTour);
+    fs.writeFile(`${__dirname}/dev-data/data/tours-simple.json`, JSON.stringify(tours), err => {
+        res.status(201).json({
+            status: 'success',
+            data: {
+                tour: newTour
+            }
+        })
+    });
+})
+```
+
+### Params参数
+
+`api/v1/tours/:id/:x/:y?`:id,:x,为可以定义的变量,:y?为可选变量
+
+```js
+app.get('/api/v1/tours/:id', (req, res) => {
+    console.log(req.params);
+    const id = req.params.id * 1; //对象的id是字符串,乘以1,转化成数字
+    const tour = tours.find(el => el.id === id); //JavaScript的find用法
+    res.status(200).json({
+        status: 'success',
+        data: {
+            tour
+        }
+    })
+})
+```
+
+### Patch请求
