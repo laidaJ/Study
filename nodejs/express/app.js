@@ -1,13 +1,15 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+const express = require('express')
 
-app.use(express.static('public'));
+const catRouter = require('./routers/catRoutes')
+
+const app = express();
+
+app.use(express.json());
+app.use('/api/v1/cats', catRouter);
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-});
+    const url = req.url;
+    res.status(200).send(`you are now visiting ${url}`)
+})
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+module.exports = app

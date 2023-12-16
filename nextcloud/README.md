@@ -37,3 +37,25 @@ sudo -u www-data php occ files:scan admin
 ```sh
 sudo -u www-data php occ files:scan --path="/admin/files/work"
 ```
+
+### nextcloud.cnf配置
+
+安全策略问题
+
+```sh
+<VirtualHost *:8080>
+  DocumentRoot /var/www/nextcloud/
+  ServerName  flychicken.com.cn:8080
+
+  <Directory /var/www/nextcloud/>
+    Require all granted
+    AllowOverride All
+    Options FollowSymLinks MultiViews
+
+    <IfModule mod_dav.c>
+      Dav off
+    </IfModule>
+Header set Content-Security-Policy "default-src 'self'; script-src 'self' http://121.41.72.6:8080; style-src 'self' http://121.41.72.6:8080 'unsafe-inline';img-src 'self' data:;"
+  </Directory>
+</VirtualHost>
+```

@@ -126,11 +126,13 @@ module.exports可以简化为exports,共享永远以module.exports为主
     >`npm install xxx --global`
 - dev安装
     >`npm install xxx --save-dev`
-    - 在package.json中的scripts编辑
+  - 在package.json中的scripts编辑
         >`"start": "nodemon index.js"`
-    - 命令行运行
+  - 命令行运行
         >`npm start`
-    
+- 速度慢更换镜像
+    >`npm config set registry https://registry.npmmirror.com`
+
 ### npm查看,升级,卸载,安装特定版本
 
 ```sh
@@ -150,7 +152,7 @@ npm uninstall xxx
 
 package.json/ package-lock.jason中包含了需要的信息;别人只需要运行`npm install`
 
-## streams
+### streams
 
 当数据量很大的时候可以使用,把文件分包传送
 
@@ -195,7 +197,7 @@ server.listen(3000, "127.0.0.1", () => {
 });
 ```
 
-## promise
+### promise
 
 举例一个异步多层回调函数,callbackhell
 
@@ -430,7 +432,6 @@ const moment = require('moment')
 ```
 
 使用require()方法加载其他模块时,会执行被加载模块中的代码
-
 
 ### 模块化规范
 
