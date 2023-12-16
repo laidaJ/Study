@@ -1,72 +1,83 @@
-const fs = require('fs');
+// const fs = require('fs');
+const Cat = require('./../models/catModel')
 
-const cats = JSON.parse(fs.readFileSync(`${__dirname}/../json/cats.json`))
-
-//设置routers回调函数
-module.exports.getAllCats = (req, res) => {
-    res.status(200).json({
-        status: 'success',
-        resulets: cats.length,
-        data: {
-            cats
-        }
-    })
-}
-module.exports.postCat = (req, res) => {
-    const newId = cats[cats.length - 1].id + 1;
-    const newCat = Object.assign({ id: newId }, req.body);
-    cats.push(newCat);
-
-    fs.writeFile(
-        `${__dirname}/../json/cats.json`,
-        JSON.stringify(cats),
-        err => {
-            if (err) {
-                return res.status(404), json({ error: 'error' });
-            } else
-                res.status(201).json({
-                    status: 'success',
-                    data: {
-                        cats: newCat
-                    }
-                });
-        })
-}
-
-module.exports.getCat = (req, res) => {
-    const catId = req.params.id * 1;
-    const myCat = cats.find(el => el.id === catId);
-    if (catId > cats.length - 1) {
-        res.status(404).send('Id is not right')
-    } else
+exports.getAllCats = async (req, res) => {
+    try {
+        const cats = await Cat.find();
         res.status(200).json({
             status: 'success',
+            resulets: cats.length,
             data: {
-                cat: myCat
+                cats
             }
-        });
-}
-/*
-const patchRoute = (req, res) => {
-    const catId = req.params.id;
-    if (catId > cats.length - 1) {
-        res.status(404).send('cat is not right')
-    } else {
-        const myCat = cats[catId];
-        cats.splice(catId, 1, "req.body");
-        res.status(201).json(myCat)
+        })
+    } catch (err) {
+        res.status(400).json({
+            status: 'fail',
+            message: err
+        })
     }
 }
-*/
-module.exports.deleteCat = (req, res) => {
-    const catId = req.params.id;
-    if (catId > cats.length - 1) {
-        res.status(404).send('Id is not right')
-    } else {
+exports.postCat = async (req, res) => {
+    try {
+        const newCat = await Cat.create(req.body);
         res.status(201).json({
             status: 'success',
-            delete: cats[catId]
+            data: {
+                cat: newCat
+            }
         })
-        cats.splice(catId, 1)
+    } catch (err) {
+        res.status(400).json({
+            status: 'fail',
+            message: err
+        })
+    }
+}
+
+exports.getCat = async (req, res) => {
+    try {
+        const cat = await Cat.findById(req.params.id);
+        res.status(201).json({
+            status: 'success',
+            data: {
+                cat
+            }
+        })
+    } catch (err) {
+        res.status(400).json({
+            status: 'fail',
+            message: err
+        })
+    }
+}
+
+exports.updateCat = async (req, res) => {
+    try {
+        const cat = await Cat.findByIdAndUpdate(req.params.id);
+        res.status(201).json({
+            status: 'success',
+            data: {
+                cat
+            }
+        })
+    } catch (err) {
+        res.status(400).json({
+            status: 'fail',
+            message: err
+        })
+    }
+}
+
+exports.deleteCat = async (req, res) => {
+    try {
+        await Cat.findByIdAndDelete(re.params.id);
+        res.status(201).send('Deleted!😘')
+
+    } catch (err) {
+        res.status(400).json({
+            status: 'fail',
+            message: err
+        })
     }
 }

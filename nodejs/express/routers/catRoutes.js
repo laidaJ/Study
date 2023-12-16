@@ -9,7 +9,7 @@ router.route('/')
 
 router.route('/:id')
     .get(catController.getCat)
-    // .patch(patchRoute)
+    .patch(catController.updateCat)
     .delete(catController.deleteCat)
 
 module.exports = router;

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Hello LaidaJ!</h1>
+    <button>点击获取小猫咪</button>
+    <div id="catList">
+        <!-- JSON 数据将会在这里显示 -->
+    </div>
+
+
+</body>
+<script>
+    const clintUrl = window.location.href;
+    const catUrl = clintUrl + 'api/v1/cats';
+
+    // 传输过来的 JSON 数据
+    const jsonData = catUrl;
+
+    // 获取展示 JSON 数据的父元素
+    const catList = document.getElementById('catList');
+
+    // 创建用于展示 JSON 数据的 HTML 元素
+    const ul = document.createElement('ul');
+
+    // 遍历 cats 数据并创建列表项
+    jsonData.data.cats.forEach(cat => {
+        const li = document.createElement('li');
+        li.textContent = `Name: ${cat.name}, Age: ${cat.age}, Color: ${cat.color}`;
+        ul.appendChild(li);
+    });
+
+    // 将创建的列表添加到父元素中
+    catList.appendChild(ul);
+
+</script>
+
+</html>
