@@ -282,4 +282,24 @@ git merge origin/master
 git merge upstream/master
 ```
 
-## 第一次修改内容
+## 恢复
+
+### 已经删除了本地仓库
+
+```sh
+git status
+git log --oneline
+git reset --hard xxxxx
+```
+
+### 删除操作提交到暂存区
+
+```sh
+git reset --hard HEAD
+```
+
+### 只在本地删除了文件
+
+```sh
+git restore x.txt
+```

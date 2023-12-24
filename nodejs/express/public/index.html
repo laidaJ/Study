@@ -20,9 +20,6 @@
     const clintUrl = window.location.href;
     const catUrl = clintUrl + 'api/v1/cats';
 
-    // 传输过来的 JSON 数据
-    const jsonData = catUrl;
-
     // 获取展示 JSON 数据的父元素
     const catList = document.getElementById('catList');
 
@@ -30,14 +27,18 @@
     const ul = document.createElement('ul');
 
     // 遍历 cats 数据并创建列表项
-    jsonData.data.cats.forEach(cat => {
+    catUrl.data.cats.forEach(cat => {
         const li = document.createElement('li');
         li.textContent = `Name: ${cat.name}, Age: ${cat.age}, Color: ${cat.color}`;
         ul.appendChild(li);
     });
-
-    // 将创建的列表添加到父元素中
     catList.appendChild(ul);
+    // 将创建的列表添加到父元素中
+    const btn = document.querySelector('button');
+    btn.addEventListener('click', () => {
+        console.log(catList)
+    })
+
 
 </script>
 

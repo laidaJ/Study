@@ -3,7 +3,10 @@ const Cat = require('./../models/catModel')
 
 exports.getAllCats = async (req, res) => {
     try {
-        const cats = await Cat.find();
+        const queryObj = { ...req.query };
+        const excludeFields = ['limit', 'page', 'sort', 'fields'];
+        excludeFields.forEach(el => delete (queryObj[el]));
+        const cats = await Cat.find(queryObj);
         res.status(200).json({
             status: 'success',
             resulets: cats.length,
