@@ -5,13 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .wrapper {
+      text-align: center;
+
+    }
+  </style>
 </head>
 
 <body>
+  <img src="./images/1.jpg" alt="">
   <script>
-    let arr = ['red', 'pink', 'green']
-    let random = Math.floor(Math.random() * arr.length)
-    console.log(arr[random])
+    const getRandom = (n, m) => {
+      Math.floor(Math.random() * (m - n + 1) + n)
+    }
+    const img = document.querySelector('img');
+    const random = getRandom(1, 6);
+    img.src = `./images/${random}.jpg`
   </script>
 </body>
 

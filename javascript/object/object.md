@@ -99,6 +99,27 @@ let random = Math.floor(Math.random()*arr.length)
 console.log(arr[random])
 ```
 
+猜数字案例
+
+随机生存1-10之间的数字,用户输入一个数字
+
+```js
+let random = Math.floor(Math.random() * 10 + 1)
+let guess = +prompt('请输入一个数字');
+while (true) {
+  if (guess > random) {
+    alert(`你输入的数字是${guess},数字大了`)
+    guess = +prompt('请输入一个数字');
+  } else if (guess < random) {
+    alert('数字小了')
+    guess = +prompt(`你输入的数字是${guess},数字小了`);
+  } else {
+    alert(`你输入的数字是${guess},猜对了`)
+    break;
+  }
+}
+```
+
 
 
 
