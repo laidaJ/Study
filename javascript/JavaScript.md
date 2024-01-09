@@ -1,4 +1,4 @@
-# Javascript
+# JavasCript
 
 ### Values and Variables
 
@@ -461,7 +461,7 @@ console.log(arr)
 function 函数名 () {
     函数体
 }
-//调用
+//调用/calling/running/invoking function
 函数名()
 ```
 
@@ -488,7 +488,7 @@ const getSum = (arr = []) => {
 getSum([1, 2, 3, 4, 5])
 ```
 
-#### 函数的返回值
+函数的返回值
 
 ```js
 function fn() {
@@ -533,11 +533,11 @@ arguments是伪数组
 3. 不是真数组 pop() push() 等等
 4. 只有函数才有arguments对象，并且内置好了
 
-函数的两种声明方式
+函数的三种声明方式
 
 1. 利用函数关键字自定义函数(命名函数)
     ```js
-    function fn(){
+    function fn() {
     
     }
     fn();
@@ -545,11 +545,22 @@ arguments是伪数组
 
 2. 函数表达式(匿名函数)
     ```js
-    var fn() = function(){
+    const fn = function () {
     
     }
     fn();
     ```
+
+3. ES6箭头函数
+
+   ```js
+   const fn = () => {
+       
+   }
+   fn();
+   ```
+
+   
 
 作用域
 
