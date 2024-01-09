@@ -1,32 +1,30 @@
-# Variable
+# Javascript
+
+### Values and Variables
 
 - 变量
-
 - 常量
 - 基本数据类型
-
-- 数组
 - 字符串
+- 数组
 
-## 变量
+变量
 
-```sh
+```js
 # 声明变量
 let num = 10
 console.log(num)
-$ 10
 ```
 
-## 常量
+常量
 
-```sh
+```js
 # 声明常量
 const uname = lesen
 console.log(uname)
-$ lesen
 ```
 
-## 基本数据类型
+基本数据类型
 
 - String
 - Number
@@ -34,9 +32,9 @@ $ lesen
 - Undefined
 - Null
 
-### 转换
+转换数据类型
 
-```sh
+```js
 # + 两边只要有一个字符串,就都会转换成字符串
 # -*/等会把数据转换成数字类型
 # 隐式转换
@@ -53,18 +51,14 @@ console.log(parseFloat('12.3px'))
 $ 12.3
 ```
 
-
-
-
-
-# 对象
+### Object
 
 - 对象(object):JavaScript的一种数据类型
 
 - 可以理解为是一种无序的数据集合,注意数组是有序的数据集合
 - 用来描述某个事物,例如描述一个人
 
-## 对象的使用
+对象的使用
 
 ```js
 let 对象名 = {
@@ -74,7 +68,7 @@ let 对象名 = {
 //对象由属性和方法组成
 ```
 
-### 增删改查
+增删改查
 
 语法:对象名.属性
 
@@ -87,21 +81,16 @@ let person = {
 //查
 console.log(person.uname)
 $ lesen
-console.log(person.age)
-$ 18
-console.log(person.gender)
-$ male
 //标准的查
 console.log(person['uname'])
 //改
 person.age = 20
-console.log(person.age)
 $ 20
 //增
 person.hobby = 'baskteball'
 ```
 
-### 对象的方法
+对象的方法
 
 ```js
 let person = {
@@ -113,7 +102,7 @@ let person = {
 person.sum(1, 2)
 ```
 
-### 遍历对象
+遍历对象
 
 ```js
 let person = {
@@ -127,7 +116,7 @@ for (let k in person) {
 }
 ```
 
-## 内置对象
+内置对象
 
 Math
 
@@ -143,7 +132,7 @@ console.log(Math.floor(1.1)) $ 1
 console.log(Math.roud(1.5))	$ 2
 ```
 
-###  随机数
+随机数
 
 `Math.random()`是[0-1)的数
 
@@ -179,17 +168,9 @@ while (true) {
 }
 ```
 
+### Calculate
 
-
-
-
-
-
-
-
-# Calculate
-
-# 运算符
+运算符
 
 - 赋值运算符
 - 比较运算符
@@ -197,14 +178,14 @@ while (true) {
 - 逻辑运算符
 - 运算符优先级
 
-### 赋值运算符
+赋值运算符
 
 ```js
 let num = 10 #只能给变量赋值
 num += 1	# 等于 num = num + 1
 ```
 
-### 一元运算符
+一元运算符
 
 ```js
 let i = 1;
@@ -213,7 +194,7 @@ let i = 1;
 console.log(i++)	#2
 ```
 
-### 比较运算符
+比较运算符
 
 ```js
 let i = 10
@@ -221,15 +202,15 @@ console.log(i < 11);	# true
 console.log(i > 11);	# false
 ```
 
-### 逻辑运算符
+逻辑运算符
 
-| 符号 | 名称   | 日常读法 | 特点                                   | 口诀          |
-| ---- | ------ | -------- | -------------------------------------- | ------------- |
-| &&   | 逻辑与 | 并且     | 符号两边都为true<br />结果才为true     | 一假则假      |
-| \|\| | 逻辑或 | 或者     | 符号两边有一个为true<br />结果就为true | 一真则真      |
-| !    | 逻辑非 | 取反     | true变为false<br />false变为true       | 真变假,假变真 |
+| 符号 | 名称   | 日常读法 | 特点                              | 口诀          |
+| ---- | ------ | -------- | --------------------------------- | ------------- |
+| &&   | 逻辑与 | 并且     | 符号两边都为true;结果才为true     | 一假则假      |
+| \|\| | 逻辑或 | 或者     | 符号两边有一个为true;结果就为true | 一真则真      |
+| !    | 逻辑非 | 取反     | true变为false;false变为true       | 真变假,假变真 |
 
-### 运算符优先级
+运算符优先级
 
 | 优先级 | 运算符     | 顺序          |
 | ------ | ---------- | ------------- |
@@ -242,15 +223,9 @@ console.log(i > 11);	# false
 | 7      | 赋值运算符 | =             |
 | 8      | 逗号运算符 | ,             |
 
-## 语句
-
-表达式是可以被求值的代码,语句是一段可以执行的代码
-
 ### 分支语句
 
-三种使用:单分支,双分支,多分支
-
-#### if分支语句
+if分支语句
 
 ```js
 if (true) {
@@ -272,7 +247,7 @@ if (条件) {
 }
 ```
 
-#### 三元运算符
+三元运算符
 
 比if双分支更简单的写法, `?`和`:`配合使用
 
@@ -282,7 +257,7 @@ let num2 = +prompt('输入第二个数');
 num1 > num2 ? alert(`最大的数是${num1}`) : alert(`最大的数是${num2}`)
 ```
 
-#### switch语句
+switch语句
 
 ```js
 let num1 = +prompt('num1');
@@ -304,7 +279,7 @@ switch (cal) {
 }
 ```
 
-#### 循环语句
+循环语句
 
 ```js
 let result = prompt('Do you love me?');
@@ -316,7 +291,7 @@ let result = prompt('Do you love me?');
     }
 ```
 
-#### 取款机案例
+取款机案例
 
 ```js
 let result = 0;
@@ -440,7 +415,7 @@ Array是一种可以按顺序保存数据的数据类型
 | ------------------- | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | console.log(arr[i]) | arr[i] = 10 | arr.push('str') #在后面增加<br />arr.unshift('str') #在前面增加 | arr.pop() #删除最后<br />arr.shift() #删除最开头<br />arr.splice(start, deleteCount) |
 
-#### 数组筛选
+数组筛选
 
 ```js
 let arr = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7];
@@ -457,7 +432,7 @@ for (let i = 0; i < arr.length; i++) {
 document.write(newArr)
 ```
 
-#### 冒泡排序(了解即可)
+冒泡排序(了解即可)
 
 ```js
 let arr = [5, 4, 3, 2, 1];
@@ -477,11 +452,9 @@ console.log(arr)
 
 `arr.sort()`
 
-# function
+### function
 
-## 函数的使用
-
-### 使用
+使用
 
 ```js
 //声明函数
@@ -492,13 +465,13 @@ function 函数名 () {
 函数名()
 ```
 
-#### 命名规则
+命名规则
 
 - 基本和变量一致
 - 驼峰命名法 getNumber
 - 最好开头用动词 get\can\has\set
 
-#### 函数参数
+函数参数
 
 ```js
 function 函数名(参数) {
@@ -525,55 +498,6 @@ let num = fn()
 console.log(num)
 ```
 
-# JavaScript笔记
-
-## 函数
-
-### 函数的使用
-
-```js
-# function声明函数
-function sayHi(){
-    console.log('hi~');
-}
-# 调用函数
-sayHi();
-```
-
-### 函数的参数
-
-```js
-function 函数名(形参1,形参2...){ //形参接受实参，相当于一个变量
-    console.log(形参1,形参2...);
-}
-函数名(实参1,实参2...);
-```
-
-- 多个参数用逗号隔开
-- 形参可以看做不用声明的变量
-
-函数形参实参不匹配情况
-```js
-function getSum(num1,num2){
-    console.log(num1,num2);
-}
-getSum(1,2);
-getSum(1,2,3);
-getSum(1);
-# 实参多于形参，截取
-# 实参少于形参，多的形参未定义
-```
-
-### 函数的返回值
-
-```js
-function 函数名(){
-    return 需要返回的结果;
-}
-函数名();   # return把结果返回给了函数调用者
-console.log(函数名());
-```
-
 注意事项
 - return 终止函数，后面的代码不会被执行
 - return 只能返回一个值，是最后的一个
@@ -595,7 +519,7 @@ function getarrMax(arr){
 console.log(getarrMax[151,5800,10,1,7]);
 ```
 
-### arguments的使用
+arguments的使用
 
 ```js
 function fn(){
@@ -609,12 +533,12 @@ arguments是伪数组
 3. 不是真数组 pop() push() 等等
 4. 只有函数才有arguments对象，并且内置好了
 
-### 函数的两种声明方式
+函数的两种声明方式
 
 1. 利用函数关键字自定义函数(命名函数)
     ```js
     function fn(){
-
+    
     }
     fn();
     ```
@@ -622,21 +546,22 @@ arguments是伪数组
 2. 函数表达式(匿名函数)
     ```js
     var fn() = function(){
-
+    
     }
     fn();
     ```
 
-## 作用域
+作用域
 
 - 代码名字(变量)在某个范围内起作用和效果;目的为了提高程序的可靠性，减少命名冲突
 - js的作用域`es6`之前:全局作用域 局部作用域
 - 全局作用域:整个script标签 或者是一个单独的js文件`var num = 10;`
 - 局部作用域:在函数内部`function fn(){}`
 
-## 预解析
+### 预解析
 
 **重点**
+
 1. js引擎运行分两步:预解析>代码执行
    - 预解析:js引擎会把所有的var和function提升到最前面
    - 代码执行:按照代码代码书写顺序从上往下执行
@@ -644,17 +569,15 @@ arguments是伪数组
    - 变量提升:所有变量声明提升到最前面，不提升赋值操作
    - 函数提升:所有函数声明提升到最前面，不调用
 
-# Web Api
+### Web Api
 
-## DOM
-
-### DOM对象
+DOM对象
 
 DOM对象:浏览器根据html标签生成的JS对象
 
 document对象:是DOM里提供的一个对象,所以它提供的属性和方法都是用来访问和操作页面内容的
 
-#### 根据css选择器来获取DOM元素
+根据css选择器来获取DOM元素
 
 ```js
 //获取匹配的第一个元素
@@ -668,7 +591,7 @@ document.querySelectorAll('css选择器')
 document.querySelectorAll('ul li')
 ```
 
-#### 操作元素内容
+操作元素内容
 
 对象`.innerText`属性
 
@@ -706,7 +629,7 @@ three.innerHTML = personArr[random3]
 personArr.splice(random3, 1)
 ```
 
-#### 操作样式属性
+操作样式属性
 
 通过style属性控制样式
 
@@ -736,8 +659,6 @@ box.classList.remove('div') //删除类
 box.classList.toggle('box')	//切换类
 ```
 
-
-
 随机更换背景图
 
 ```css
@@ -754,7 +675,7 @@ const random = getRandom(1, 10)
 document.body.style.backgroundImage = `./images/desktop_${random}.jpg`
 ```
 
-#### 操作表单元素属性
+操作表单元素属性
 
 ```js
 const uname = document.querySelector('input')
@@ -768,7 +689,7 @@ const btn = document.querySelector('button')
 btn.disabled = true //不能点击
 ```
 
-#### 自定义属性
+自定义属性
 
 **标准属性**:标签天生自带的属性,比如class,id,title等,可以直接使用语法操作比如:disabled,checked,selected
 
@@ -789,7 +710,7 @@ btn.disabled = true //不能点击
 </body>
 ```
 
-### 定时器
+定时器
 
 ```js
 //匿名函数
@@ -836,9 +757,9 @@ clearInterval(timer) //关闭定时器
 </body>
 ```
 
-# 事件监听
+### 事件监听
 
-## 语法
+语法
 
 1. 什么是事件监听
     > 让程序检测是否有事件产生,一旦有事件触发,就立即调用一个函数做出响应
@@ -853,7 +774,7 @@ btn.addEventListener('click', function(){
     alert('hello')
 })
 ```
-## 事件类型
+事件类型
 
 - 鼠标触发
     1. click 鼠标点击
@@ -869,7 +790,7 @@ btn.addEventListener('click', function(){
 - 表单输入触发
     1. input 用户输入事件
 
-## 事件对象
+事件对象
 
 回调函数的第一个参数就是事件对象
 
@@ -890,5 +811,4 @@ JavaScript Object Notation (JSON)JS对象注释
 
 - 先决条件:基础计算机知识,了解一点html和css,熟悉JavaScript
 - 目的:了解如何使用存储在JSON中的数据,并且创建你自己的JSON字符串
-
 
