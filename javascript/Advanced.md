@@ -268,3 +268,152 @@ JavaScript Object Notation (JSON)JS对象注释
 - 先决条件:基础计算机知识,了解一点html和css,熟悉JavaScript
 - 目的:了解如何使用存储在JSON中的数据,并且创建你自己的JSON字符串
 
+### Destructuring Arrays 解构数组
+
+解构数组有点像解压压缩包,可以数组 = 数组的形式,对应的取值
+
+```js
+const arr = [1, 2, 3];
+const [a, b, c] = arr;
+console.log(a, b, c);
+$ 1 2 3
+```
+
+用`空格`可以跳过不想取的数值
+
+```js
+const arr = [1, 2, 3];
+const [a, , c] = arr;
+console.log(a, c);
+$ 1 3
+```
+
+不需要temp来临时存储,可以直接交换两个值
+
+```js
+const arr = [1, 2, 3];
+let [a, b] = arr;
+[b, a] = [a, b];
+console.log(a, b);
+$ 2 1
+```
+
+对象内的函数也可以解构
+
+```js
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+  order: function (startIndex, mainIndex) {
+    return [this.starterMenu[startIndex], this.mainMenu[mainIndex]];
+  }
+};
+const [starter, main] = restaurant.order(2, 0);
+console.log(starter, main);
+$ Garlic Bread Pizza
+```
+
+数组内的数组
+
+```js
+const arr = [1, 2, [3, 4]];
+const [a, b, [c, d]] = arr;
+console.log(a, b, c, d);
+$ 1 2 3 4
+```
+
+设置默认值
+
+```js
+const arr = [1, 2, 3];
+const [a = 1, b = 1, c = 1, d = 1] = arr;
+console.log(a, b, c, d);
+$ 1 2 3 1
+```
+
+### Desctructuring Objects 解构对象
+
+解构对象与解构数组原理一样,只是解构对象需要对应准确的参数
+
+```js
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+  order: function (startIndex, mainIndex) {
+    return [this.starterMenu[startIndex], this.mainMenu[mainIndex]];
+  },
+
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  },
+};
+```
+
+解构对象
+
+```js
+const { name, categories, openingHours } = restaurant;
+console.log(name, categories, openingHours);
+```
+
+重新命名
+
+```js
+const {
+  name: restaurantName,
+  categories: tags,
+  openingHours: open,
+} = restaurant;
+console.log(restaurantName, tags, open);
+```
+
+设置默认值
+
+```js
+const { name: restaurantName = [], menu = [] } = restaurant;
+console.log(restaurantName, menu);
+```
+
+内嵌对象取值
+
+```js
+const {
+  fri: { open, close },
+} = restaurant.openingHours;
+console.log(open, close);
+const {
+  fri: { open: o, close: c },
+} = restaurant.openingHours;
+console.log(o, c);
+```
+
+更改数值
+
+```js
+let a = 111;
+let b = 999;
+const obj = { a: 1, b: 2, c: 3 };
+({ a, b } = obj);
+console.log(a, b);
+$ 1 2
+```
+
