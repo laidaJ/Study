@@ -417,3 +417,152 @@ console.log(a, b);
 $ 1 2
 ```
 
+###  Spread operator 扩展运算符
+
+在数组变量前加`...`可以把数组取出来
+
+```js
+const arr = [2, 3, 4];
+//常规办法
+const badArr = [1, arr[0], arr[1], arr[2]];
+//扩展运算符...
+const goodArr = [1, ...arr];
+```
+
+合并两个数组
+
+```js
+const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(menu);
+```
+
+iterable可迭代:arrays,strings,maps,sets,NOT objects
+
+```js
+const lesen = 'Lesen';
+console.log(...lesen);
+const letters = [...lesen];
+console.log(letters);
+$ L e s e n
+$ ['L', 'e', 's', 'e', 'n']
+```
+
+餐厅案例
+
+```js
+//在餐厅对象增加函数
+orderPasta: (ing1, ing2, ing3) =>
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+    ),
+
+//弹窗输入3个配料    
+const ingredients = [
+  prompt("let's make pasta! Ingredient 1?"),
+  prompt('Ingredient 2?'),
+  prompt('Ingredient 3'),
+];
+//使用...把数组中的值解析出来
+restaurant.orderPasta(...ingredients);
+$ Here is your delicious pasta with Mushroom, egg and peanut
+```
+
+操作对象
+
+```js
+//提取原对象内的数据并且新增合并
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Huangkai' };
+console.log(newRestaurant);
+//这个复制是另外开辟一个内存栈
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'flychicken';
+console.log(restaurant.name);
+console.log(restaurantCopy.name);
+$ Classico Italiano
+$ flychicken
+```
+
+### Rest
+
+左边用`...参数`来代替其余的数值;
+
+1. 需要在最后面
+2. 左边要比右边多
+
+```js
+//在等号右边的是扩展用法
+const arr = [1, 2, ...[3, 4]];
+//在等号左边的是Rest用法
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+$ 1 2 [3, 4, 5]
+```
+
+用rest方式处理restaurant对象
+
+```js
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+```
+
+### Short circuiting(&& ||)
+
+或 ||;按顺序判断,出现第一个为真,JavaScript就不会看后面的了,显示第一个为真的值,或者显示最后一个
+
+```js
+console.log('' || 'Lesen'); $ Lesen
+console.log(true || 0);		$ true
+console.log(undefined || null);	$ null
+//可以相当于于if判断语句使用
+const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guest1); 
+const guest2 = restaurant.numGuests || 10;
+console.log(guest2);
+```
+
+与 &&;按顺序判断,出现第一个为假,JavaScript就不会看后面的了,显示第一个为假的值,或者最后一个
+
+```js
+console.log(0 && 'Lesen');	$ 0
+console.log(7 && 'Lesen');	$ Lesen
+console.log('Hello' && 23 && null && 'lesen');	$ null
+```
+
+### Logical assignment operators逻辑赋值运算符
+
+OR assignment operator
+
+```js
+const rest1 = {
+  name: 'Capri',
+  numGuests: 0,
+};
+
+const rest2 = {
+  name: 'La Pizza',
+  owner: 'laijun',
+};
+
+// rest1.numGuests = rest1.numGuests || 10;
+// rest1.numGuests ||= 10;	//上一条的简单写法
+rest1.numGuests ??= 10; //空值的赋值运算写法
+
+// rest2.numGuests = rest2.numGuests || 10;
+// rest2.numGuests ||= 10;
+rest2.numGuests ??= 10;
+
+console.log(rest1.numGuests);
+console.log(rest2.numGuests);
+```
+
+AND assignment operator
+
+```js
+// rest1.owner = rest1.owner && '<Noone>';
+rest1.owner &&= '<Noone>';
+// rest2.owner = rest2.owner && '<Noone>';
+rest2.owner &&= '<Noone>';
+console.log(rest1);
+console.log(rest2);
+```
+
