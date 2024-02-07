@@ -1,0 +1,8 @@
+# python
+.idea
+venv
+*.pyc
+_pycache_
+
+# node
+node_module
