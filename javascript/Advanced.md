@@ -566,3 +566,100 @@ console.log(rest1);
 console.log(rest2);
 ```
 
+### for-of loop
+
+ES6的循环语法
+
+```js
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+for (const item of menu) console.log(item);
+```
+
+老式办法取索引号
+
+```js
+for (const item of menu.entries()) {
+  console.log(`${item[0] + 1}: ${item[1]}`); //item[0]为索引号,从0开始
+}
+```
+
+结构办法取索引号
+
+```js
+for (const [i, el] of menu.entris()) {
+    console.log(`${i + 1}: ${el}`);
+}
+```
+
+### Enhanced object literals增强对象文字
+
+针对对象的ES6语法
+
+当对象的变量和引用变量名字相同时,可以直接只写变量名
+
+```js
+const openingHours = {
+  thu: {
+    open: 12,
+    close: 22,
+  }
+};
+const restaurant = {
+  openingHours,
+}
+```
+
+对象内函数可以省略`:`和`function`;
+
+```js
+const restaurant = {
+  openingHours,
+  orderPasta(ingredients) {
+    console.log(`Here is your delicious pasta with ${ingredients}`);
+  },
+};
+restaurant.orderPasta('peanut');
+```
+
+可以用数值索引号取值
+
+```js
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fir', 'sat', 'sun']
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  fri: {
+    open: 11,
+    close: 23,
+  },
+  [`day-${2+4}`]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+```
+
+### Set 集合
+
+Set是一个可迭代对象,去重复值;
+
+```js
+const ordersSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+console.log(ordersSet);
+console.log(ordersSet.size);	#检查Set的种类数量
+console.log(ordersSet.has('Pizza'));	#检查是否包含,返回布尔值
+ordersSet.add('Garlic Bread');	#增加
+ordersSet.delete('Pizza');	#删除
+```
+
+
+
