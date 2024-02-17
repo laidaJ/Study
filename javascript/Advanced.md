@@ -643,23 +643,31 @@ const openingHours = {
 
 ### Set 集合
 
-Set是一个可迭代对象,去重复值;
+Set是一个可迭代对象,去重复值,值是**唯一**的;没有索引,不能取值;所以可以检查size,是否含有has,增加add,删除delete.
 
 ```js
-const ordersSet = new Set([
-  'Pasta',
+const orders = ['Pasta',
   'Pizza',
   'Pizza',
   'Risotto',
   'Pasta',
-  'Pizza',
-]);
+  'Pizza'];
+const ordersSet = new Set(orders);
 console.log(ordersSet);
-console.log(ordersSet.size);	#检查Set的种类数量
-console.log(ordersSet.has('Pizza'));	#检查是否包含,返回布尔值
-ordersSet.add('Garlic Bread');	#增加
-ordersSet.delete('Pizza');	#删除
+console.log(ordersSet.size);	//检查Set的种类数量
+console.log(ordersSet.has('Pizza'));	//检查是否包含,返回布尔值
+ordersSet.add('Garlic Bread');	//增加
+ordersSet.delete('Pizza');	//删除
+ordersSet.clear();	//清除
+
+//可迭代
+for (const order of ordersSet) console.log(order);
+//用扩展的方式重新获取set类型的数组
+const ordersUnique = [...new Set(orders)];
+console.log(ordersUnique);
 ```
 
+### Maps 地图
 
+ 
 
