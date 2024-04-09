@@ -669,5 +669,52 @@ console.log(ordersUnique);
 
 ### Maps 地图
 
- 
+### Callback function 回调函数
+
+**callback function 是编程中非常重要的**可以让代码更清晰,逻辑分明
+
+```js
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+};
+```
+
+Higher-order function
+
+```js
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformerd string: ${fn(str)}`);
+  console.log(`Transformered by: ${fn.name}`);
+};
+
+transformer('This is a test text', upperFirstWord);
+transformer('Make text in one word', oneWord);
+```
+
+The call methods
+
+调用对象里面的函数只能使用call用法
+
+```js
+// lufthansa,eurowings都是对象
+const book = lufthansa.book;
+book.call(eurowings, 40, 'Huangkai');
+// 可以把调用值存储到数组中
+const flightData = [238, 'Guanzhon'];
+book.call(eurowings, ...flightData);
+```
+
+The bind methods
+
+call函数是直接调用,bind可以设置函数不调用.
+
+```js
+const bookEW = book.bind(eurowings);
+bookEW(200, 'Guanzhon');
+//可以预设参数
+const bookEW23 = book.bind(erowings, 23);
+bookEW23('Lesen');
+```
 
