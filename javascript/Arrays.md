@@ -1,4 +1,4 @@
-# Arrays
+# Working with Arrays
 
 在现代的js用法中升级了arrays的使用
 
@@ -65,6 +65,25 @@ movements.forEach(function (movement, index, array) {
   } else {
     console.log(`Movement ${index + 1}: You withdrew ${Math.abs(movement)}`);
   }
+});
+```
+
+### forEach with Map and Set
+
+```js
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+
+const currenciesUnique = new Set(['USD', 'GBP', 'EUR', 'USD', 'EUR']);
+currenciesUnique.forEach(function (value, key, set) {
+  console.log(`${key}, ${value}`);
 });
 ```
 
